@@ -1,0 +1,62 @@
+name: 'Issue'
+labels: 'triage'
+description: An issues with the Jenkins projects Infrastructure
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Never report security issues on GitHub or other public channels (Gitter/Twitter/etc.)**
+        Follow these instruction to report security issues: https://www.jenkins.io/security/#reporting-vulnerabilities
+
+        This issue tracker is for **Infrastructure** related issues for the **Jenkins project**, not for your own companies Jenkins instance, feature requests or bugs in the services hosted by the Jenkins project should generally be tracked in the service's own GitHub repository.
+
+  - type: dropdown
+    attributes:
+      label: Service
+      description: "Pick the service that matches what you are after, select Other if none match"
+      options:
+        - "Accounts"
+        - "Archives"
+        - "Artifactory"
+        - "AWS"
+        - "Azure"
+        - "Digital Ocean"
+        - "cert.ci.jenkins.io"
+        - "ci.jenkins.io"
+        - "infra.ci.jenkins.io"
+        - "release.ci.jenkins.io"
+        - "trusted.ci.jenkins.io"
+        - "Docker Hub"
+        - "get.jenkins.io"
+        - "Incrementals"
+        - "Jira"
+        - "LDAP"
+        - "Mailing lists"
+        - "pkg.jenkins.io"
+        - "plugins.jenkins.io"
+        - "VPN"
+        - "Update center"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Summary
+      description: |
+        Short summary
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction steps
+      description: |
+        Write bullet-point reproduction steps.
+        Use screenshots where appropriate, copy textual output otherwise. When in doubt, do both.
+        Include relevant logs, e.g. build link or snippet.
+      placeholder: |
+        1. Step 1: ...
+        2. Step 2: ...
+    validations:
+      required: false

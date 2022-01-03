@@ -1,0 +1,43 @@
+name: '🚀 GitHub permissions'
+labels: 'github-permissions'
+description: Request GitHub permissions
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Permissions are generally handled in the [repository-permissions-updater](https://github.com/jenkins-infra/repository-permissions-updater/), this issue template
+        is for exceptions to that if it can't be handled there.
+  - type: textarea
+    attributes:
+      label: GitHub repositories
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: GitHub users to have permission
+      placeholder: |
+        @user1
+        @user2
+        @user3
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Permission level
+      options:
+        - "Read"
+        - "Write"
+        - "Triage"
+        - "Maintain"
+        - "Admin"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Justification
+      description: |
+        Please provide justification for access and the access level
+    validations:
+      required: true
