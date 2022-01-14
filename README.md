@@ -7,6 +7,6 @@ If you want to report an issue or a bug with the Jenkins website, wiki, or any o
 As of the 11th of January 2022, all existing INFRA project issues have been migrated from [Jira](https://issues.jenkins.io/projects/INFRA/issues) to this repository as [Github issues](https://github.com/jenkins-infra/helpdesk/issues?q=label%3Aimported-jira-issue).
 See ["Switch from Jira Issues to Github Issues for the INFRA project"](https://github.com/jenkins-infra/helpdesk/issues/9) for more details and a command to subscribe to your existing Jira issues here.
 
-Status of hosted services and maintenance announcements can be seen on a dedicated status page https://status.jenkins.io. You can stay updated of incidents and maintenance by following our RSS feed at the bottom of the status page.
+Status of hosted services and maintenance announcements can be seen on a dedicated status page https://status.jenkins.io. You can stay updated of incidents and maintenance by following [our RSS feed](https://status.jenkins.io/index.xml) at the bottom of the status page.
 
 <!-- TODO Add FAQ below -->
