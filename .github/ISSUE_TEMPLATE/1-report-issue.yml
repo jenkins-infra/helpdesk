@@ -1,34 +1,45 @@
 name: 'Issue'
 labels: 'triage'
-description: An issues with the Jenkins projects Infrastructure
+description: An issue with the Jenkins projects Infrastructure
 
 body:
   - type: markdown
     attributes:
       value: |
+        Thanks for filing an issue!
         **Never report security issues on GitHub or other public channels (Gitter/Twitter/etc.)**
         Follow these instruction to report security issues: https://www.jenkins.io/security/#reporting-vulnerabilities
 
         This issue tracker is for **Infrastructure** related issues for the **Jenkins project**, not for your own companies Jenkins instance, feature requests or bugs in the services hosted by the Jenkins project should generally be tracked in the service's own GitHub repository.
 
+        Before hitting the button, please answer these questions.
+        It's helpful to search the existing GitHub issues first.
+        There is a chance that another user has already reported the issue you're facing, or it's a known issue that we're already aware of. 
+
+        Fill in as much of the template below as you can.
+        The more information we have the better we can help you.
+
   - type: dropdown
+    id: services
     attributes:
       label: Service
       description: "Pick the service that matches what you are after, select Other if none match"
+      multiple: true
       options:
         - "Accounts"
         - "Archives"
         - "Artifactory"
         - "AWS"
         - "Azure"
-        - "Digital Ocean"
         - "cert.ci.jenkins.io"
         - "ci.jenkins.io"
         - "infra.ci.jenkins.io"
         - "release.ci.jenkins.io"
         - "trusted.ci.jenkins.io"
+        - "Digital Ocean"
         - "Docker Hub"
         - "get.jenkins.io"
+        - "Github"
         - "Incrementals"
         - "Jira"
         - "LDAP"
@@ -42,6 +53,7 @@ body:
       required: true
 
   - type: textarea
+    id: summary
     attributes:
       label: Summary
       description: |
@@ -49,6 +61,7 @@ body:
     validations:
       required: true
   - type: textarea
+    id: reproduction-steps
     attributes:
       label: Reproduction steps
       description: |
