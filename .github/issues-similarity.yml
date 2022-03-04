@@ -1,0 +1,18 @@
+name: Issues Similarity Analysis
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  similarity-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: analysis
+        uses: actions-cool/issues-similarity-analysis@v1.0.0
+        with:
+          filter-threshold: 0.5
+          title-excludes: 'bug, jenkins'
+          comment-title: '### Take a look at these similar issues to see if there isn't already a response to your problem:'
+          comment-body: '${index}. ${similarity} #${number}'
+          show-footer: false
