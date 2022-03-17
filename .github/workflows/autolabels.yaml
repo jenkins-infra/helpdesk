@@ -11,7 +11,7 @@ jobs:
         id: issue-parser
         with:
           template-path: .github/ISSUE_TEMPLATE/1-report-issue.yml
-      - run: echo "ISSUE_LABELS=$(echo '${{ steps.issue-parser.outputs.jsonString }}' | jq '.services' | tr '[:upper:]' '[:lower:]' | sed 's/"//g' | sed 's/ //g')" >> $GITHUB_ENV
+      - run: echo "ISSUE_LABELS=$('${{ fromJSON(steps.issue-parser.outputs.jsonString).services }}' | tr '[:upper:]' '[:lower:]' | sed 's/"//g' | sed 's/ //g')" >> $GITHUB_ENV
       - uses: andymckay/labeler@master
         with:
           add-labels: ${{ env.ISSUE_LABELS }}
