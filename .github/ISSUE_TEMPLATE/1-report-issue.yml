@@ -36,6 +36,7 @@ body:
         - "infra.ci.jenkins.io"
         - "release.ci.jenkins.io"
         - "trusted.ci.jenkins.io"
+        - "weekly.ci.jenkins.io"
         - "Digital Ocean"
         - "Docker Hub"
         - "get.jenkins.io"
