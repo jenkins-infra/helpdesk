@@ -19,7 +19,7 @@ body:
         Management permission allows users to manage the project, languages and general settings.
         This level of permission is not required or recommended for regular translators or proofreaders.
         If you, the issue submitter, are the only person working on the plugin, you only need to add yourself to the list.
-        The users can only be added, if they logged into crowdin.jenkins.io once.
+        The users can only be added if they logged into crowdin.jenkins.io at least once.
   - type: textarea
     attributes:
       label: Crowdin users to have project management permission
