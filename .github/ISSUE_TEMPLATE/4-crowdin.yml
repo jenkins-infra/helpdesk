@@ -1,4 +1,4 @@
-name: '🌐 Crowdin projects'
+name: '🌐 Crowdin localization projects'
 labels: 'crowdin'
 description: Request the creation of new projects on crowdin.jenkins.io or update its members.
 
