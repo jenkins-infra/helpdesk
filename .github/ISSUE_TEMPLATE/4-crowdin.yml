@@ -1,6 +1,6 @@
 name: '🌐 Crowdin localization projects'
 labels: 'crowdin'
-description: Request the creation of new projects on crowdin.jenkins.io or update its members.
+description: Request the creation of new projects on crowdin.jenkins.io (to localize a plugin) or update its members.
 
 body:
   - type: markdown
