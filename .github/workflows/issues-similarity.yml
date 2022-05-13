@@ -13,6 +13,6 @@ jobs:
         with:
           filter-threshold: 0.5
           title-excludes: 'bug, jenkins'
-          comment-title: '### Take a look at these similar issues to see if there isn't already a response to your problem:'
+          comment-title: "### Take a look at these similar issues to see if there isn't already a response to your problem:"
           comment-body: '${index}. ${similarity} #${number}'
           show-footer: false
