@@ -16,3 +16,8 @@ jobs:
         with:
           add-labels: ${{ env.ISSUE_LABELS }}
           remove-labels: "other"
+      - uses: jenschelkopf/issue-label-notification-action@1.3
+        with:
+          recipients: |
+            crowdin=@crowdin-admins
+            helpdesk=@lemeurherve
