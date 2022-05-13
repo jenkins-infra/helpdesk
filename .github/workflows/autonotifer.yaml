@@ -6,15 +6,10 @@ jobs:
   autonotifier:
     runs-on: ubuntu-latest
     steps:
-      - name: Show Information
-        run: |
-          echo "This workflow run is triggered by ${{ github.event_name }} ."
-          echo " *****************************************************************************"
-          echo "$GITHUB_CONTEXT"
-          echo " *****************************************************************************"
       - uses: jenschelkopf/issue-label-notification-action@1.3
         with:
           recipients: |
             crowdin=@jenkins-infra/crowdin-admins
             helpdesk=@lemeurherve
             test=@jenkins-infra/test-team
+            another-test=https://github.com/orgs/jenkins-infra/teams/test-team
