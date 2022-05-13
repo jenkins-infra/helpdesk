@@ -16,3 +16,9 @@ jobs:
         with:
           add-labels: "${{ env.ISSUE_LABELS }}, triage"
           remove-labels: "other"
+      - name: Show Information
+        run: |
+          echo "This workflow run is triggered by ${{ github.event_name }} ."
+          echo " *****************************************************************************"
+          echo "$GITHUB_CONTEXT"
+          echo " *****************************************************************************"
