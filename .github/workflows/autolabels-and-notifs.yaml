@@ -1,4 +1,4 @@
-name: Autolabeler
+name: Autolabeler and notifier
 on:
   issues:
     types: [opened, edited]
