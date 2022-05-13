@@ -14,5 +14,5 @@ jobs:
       - run: echo "ISSUE_LABELS=$(echo '${{ fromJSON(steps.issue-parser.outputs.jsonString).services }}' | tr '[:upper:]' '[:lower:]' | sed 's/"//g' | sed 's/ //g')" >> $GITHUB_ENV
       - uses: andymckay/labeler@master
         with:
-          add-labels: ${{ env.ISSUE_LABELS }}
+          add-labels: "${{ env.ISSUE_LABELS }}, triage"
           remove-labels: "other"
