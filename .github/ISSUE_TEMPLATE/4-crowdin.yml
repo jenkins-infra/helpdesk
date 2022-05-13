@@ -1,5 +1,5 @@
 name: '🌐 Crowdin localization projects'
-labels: 'crowdin'
+labels: ['crowdin']
 description: Request the creation of new projects on crowdin.jenkins.io (to localize a plugin) or update its members.
 
 body:
