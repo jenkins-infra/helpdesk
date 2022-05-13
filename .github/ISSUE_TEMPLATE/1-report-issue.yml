@@ -42,6 +42,7 @@ body:
         - "Docker Hub"
         - "get.jenkins.io"
         - "Github"
+        - "Helpdesk"
         - "Incrementals"
         - "Jira"
         - "LDAP"
