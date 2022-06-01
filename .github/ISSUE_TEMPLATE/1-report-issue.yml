@@ -46,6 +46,7 @@ body:
         - "Jira"
         - "LDAP"
         - "Mailing lists"
+        - "IRC"
         - "pkg.jenkins.io"
         - "plugins.jenkins.io"
         - "VPN"
