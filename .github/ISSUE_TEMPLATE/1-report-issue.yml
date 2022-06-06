@@ -51,6 +51,7 @@ body:
         - "plugins.jenkins.io"
         - "VPN"
         - "Update center"
+        - "Oracle"
         - "Other"
     validations:
       required: true
