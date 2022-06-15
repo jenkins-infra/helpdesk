@@ -17,4 +17,4 @@ jobs:
             crowdin=@jenkins-infra/crowdin-admins
             helpdesk=@lemeurherve
             test=@jenkins-infra/test-team
-            another-test=https://github.com/orgs/jenkins-infra/teams/test-team
+            another-test=@jenkins-infra/test-team
