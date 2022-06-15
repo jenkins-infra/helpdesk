@@ -44,15 +44,15 @@ body:
         - "GitHub"
         - "Helpdesk"
         - "Incrementals"
+        - "IRC"
         - "Jira"
         - "LDAP"
         - "Mailing lists"
-        - "IRC"
+        - "Oracle"
         - "pkg.jenkins.io"
         - "plugins.jenkins.io"
         - "VPN"
         - "Update center"
-        - "Oracle"
         - "Other"
     validations:
       required: true
