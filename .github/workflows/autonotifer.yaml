@@ -2,10 +2,10 @@ name: Notify users based on issue labels
 on:
   issues:
     types: [labeled]
-  workflow_run:
-    workflows: ["Auto Labeler"]
-    types:
-      - completed
+#  workflow_run:
+#    workflows: ["Auto Labeler"]
+#    types:
+#      - completed
 jobs:
   autonotifier:
     runs-on: ubuntu-latest
@@ -14,8 +14,8 @@ jobs:
         id: generate_token
         uses: tibdex/github-app-token@v1
         with:
-          app_id: ${{ secrets.JENKINS_INFRA_HELPDESK_APP_ID }}
-          private_key: ${{ secrets.JENKINS_INFRA_HELPDESK_APP_PRIVATE_KEY }}
+          app_id: ${{ secrets.INFRA_GITHUB_APP_ID }}
+          private_key: ${{ secrets.INFRA_GITHUB_APP_PRIVATE_KEY }}
       - uses: jenschelkopf/issue-label-notification-action@1.3
         with:
           token: ${{ steps.generate_token.outputs.token }}
