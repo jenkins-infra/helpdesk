@@ -1,4 +1,4 @@
-name: Auto Labeler & Notifier
+name: Auto Labeler
 on:
   issues:
     types: [opened, edited]
@@ -14,17 +14,5 @@ jobs:
       - run: echo "ISSUE_LABELS=$(echo '${{ fromJSON(steps.issue-parser.outputs.jsonString).services }}' | tr '[:upper:]' '[:lower:]' | sed 's/"//g' | sed 's/ //g')" >> $GITHUB_ENV
       - uses: andymckay/labeler@master
         with:
-          add-labels: "${{ env.ISSUE_LABELS }}, triage"
+          add-labels: "${{ env.ISSUE_LABELS }}"
           remove-labels: "other"
-  autonotifier:
-    runs-on: ubuntu-latest
-    needs: autolabeler
-    if: always()
-    steps:
-      - uses: jenschelkopf/issue-label-notification-action@1.3
-        with:
-          recipients: |
-            crowdin=@jenkins-infra/crowdin-admins
-            helpdesk=@lemeurherve
-            test=@jenkins-infra/test-team
-            another-test=https://github.com/orgs/jenkins-infra/teams/test-team
