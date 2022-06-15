@@ -2,10 +2,10 @@ name: Notify users based on issue labels
 on:
   issues:
     types: [labeled]
-  workflow_run:
-    workflows: ["Auto Labeler"]
-    types:
-      - completed
+#  workflow_run:
+#    workflows: ["Auto Labeler"]
+#    types:
+#      - completed
 jobs:
   autonotifier:
     runs-on: ubuntu-latest
