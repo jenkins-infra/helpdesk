@@ -8,6 +8,7 @@ jobs:
     steps:
       - uses: jenschelkopf/issue-label-notification-action@1.3
         with:
+          token: ${{ github.token }}
           recipients: |
             crowdin=@jenkins-infra/crowdin-admins
             helpdesk=@lemeurherve
