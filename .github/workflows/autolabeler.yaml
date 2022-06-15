@@ -12,7 +12,15 @@ jobs:
         with:
           template-path: .github/ISSUE_TEMPLATE/1-report-issue.yml
       - run: echo "ISSUE_LABELS=$(echo '${{ fromJSON(steps.issue-parser.outputs.jsonString).services }}' | tr '[:upper:]' '[:lower:]' | sed 's/"//g' | sed 's/ //g')" >> $GITHUB_ENV
-      - uses: andymckay/labeler@master
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
         with:
+          app_id: ${{ secrets.JENKINS_INFRA_HELPDESK_APP_ID }}
+          private_key: ${{ secrets.JENKINS_INFRA_HELPDESK_APP_PRIVATE_KEY }}
+      - uses: andymckay/labeler@master
+        id: autolabeler
+        with:
+          repo-token: ${{ steps.generate_token.outputs.token }}
           add-labels: "${{ env.ISSUE_LABELS }}"
           remove-labels: "other"
