@@ -7,6 +7,7 @@ on:
 jobs:
   similarity-analysis:
     runs-on: ubuntu-latest
+    if: github.event.issue.state == 'open'
     steps:
       - name: analysis
         uses: actions-cool/issues-similarity-analysis@v1.0.0
