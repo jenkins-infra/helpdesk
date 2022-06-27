@@ -17,3 +17,4 @@ jobs:
           comment-title: "### Take a look at these similar issues to see if there isn't already a response to your problem:"
           comment-body: '${index}. ${similarity} #${number}'
           show-footer: false
+          since-days: 730
