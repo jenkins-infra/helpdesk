@@ -14,7 +14,7 @@ function displayMilestoneAsMarkdown() {
   
   readarray -t my_array < <(gh issue list --repo jenkins-infra/helpdesk -m=$milestone_id --state="${state}" --json=title,url | jq -c "${sort_desc}.[]")
 
-  echo "## ${state} issues in ${milestone_name} milestone (#${milestone_id}):"
+  echo "## ${state} issues in [${milestone_name} milestone](https://github.com/jenkins-infra/helpdesk/milestones/${milestone_id}):"
   # iterate through the Bash array
   for item in "${my_array[@]}"; do
     title=$(jq -r '.title' <<< "${item}")
