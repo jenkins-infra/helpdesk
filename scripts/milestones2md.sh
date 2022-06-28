@@ -19,7 +19,7 @@ function displayMilestoneAsMarkdown() {
   for item in "${my_array[@]}"; do
     title=$(jq -r '.title' <<< "${item}")
     url=$(jq -r '.url' <<< "${item}")
-    echo "- [${title}](${url})"
+    echo "  * [${title}](${url})"
   done
   echo
 }
