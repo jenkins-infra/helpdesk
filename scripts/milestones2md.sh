@@ -24,14 +24,19 @@ function displayMilestoneAsMarkdown() {
   echo
 }
 
-# Current milestone id (https://github.com/jenkins-infra/helpdesk/milestones)
-GH_CURRENT_MILESTONE_ID=22
+# List open milestones
+echo "List of the open milestones:"
+curl -s https://api.github.com/repos/jenkins-infra/helpdesk/milestones | jq -c '.[] | {title, number}'
 
 # 'next' milestone id, shouldn't need to be changed
 GH_NEXT_MILESTONE_ID=10
 
-displayMilestoneAsMarkdown ${GH_CURRENT_MILESTONE_ID} curent closed
-displayMilestoneAsMarkdown ${GH_CURRENT_MILESTONE_ID} curent open
+# Current milestone id (https://github.com/jenkins-infra/helpdesk/milestones)
+echo 'Which of these milestones above is the current one? Enter its number below:'
+read GH_CURRENT_MILESTONE_ID
+
+displayMilestoneAsMarkdown ${GH_CURRENT_MILESTONE_ID} current closed
+displayMilestoneAsMarkdown ${GH_CURRENT_MILESTONE_ID} current open
 echo '--------'
 displayMilestoneAsMarkdown ${GH_NEXT_MILESTONE_ID} next closed
 displayMilestoneAsMarkdown ${GH_NEXT_MILESTONE_ID} next open
