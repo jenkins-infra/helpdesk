@@ -15,7 +15,8 @@ on:
       next_milestone_id:
         description: '"Next" milestone id'
         required: true
-        default: '4'
+        # "permanent" 'next' milestone: https://github.com/jenkins-infra/helpdesk/milestone/10
+        default: '10'
         type: string
       next_milestone_name:
         description: '"Next" milestone name'
