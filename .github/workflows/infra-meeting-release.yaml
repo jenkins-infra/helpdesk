@@ -1,0 +1,116 @@
+name: "Prepare infra meeting notes as release"
+
+on:
+  workflow_dispatch:
+    inputs:
+      milestone_id:
+        description: '"Current" milestone id to prepare as release'
+        required: true
+        type: string
+      milestone_name:
+        description: '"Current" milestone name'
+        required: true
+        default: 'current'
+        type: string
+      next_milestone_id:
+        description: '"Next" milestone id'
+        required: true
+        default: '4'
+        type: string
+      next_milestone_name:
+        description: '"Next" milestone name'
+        required: true
+        default: 'next'
+        type: string
+
+jobs:
+  release:
+    name: "Prepare infra meeting notes as release"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Get current date"
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - name: "Generate markdown from current and next milestone"
+        id: milestones_as_markdown
+        uses: "actions/github-script@v6"
+        with:
+          result-encoding: string
+          script: |
+            const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState) {
+              const opts = github.rest.issues.listForRepo.endpoint.merge({
+                ...context.issue,
+                milestone,
+                state: issuesState
+              })
+              const issues = await github.paginate(opts)
+
+              let markdown = ''
+              let category = 'Done'
+
+              // There should not be any closed issue in the 'next' milestone, only 'Done' ones
+              if (issuesState != 'closed') {
+                category = (milestoneName != 'next') ? 'Work In Progress' : 'New/Important'
+              }
+
+              if (issues.length > 0) {
+                markdown = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}?closed=1):`
+                for (const issue of issues) {
+                  markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
+                }
+              }
+
+              return markdown
+            }
+
+            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open')
+            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed')
+            next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open')
+
+            return `Markdown for the infra team sync meeting notes preparation:
+            <pre>
+            ${done}
+
+            ${wip}
+
+            ${next}
+            </pre>
+
+            <details><summary>Preview:</summary>
+
+            ${done}
+
+            ${wip}
+
+            ${next}
+
+            </details>
+
+            Generated from the ["${context.payload.inputs.milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.milestone_id}) and the ["${context.payload.inputs.next_milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.next_milestone_id}) milestones.`
+
+      - name: "Create release"
+        id: create_release
+        uses: "actions/github-script@v6"
+        env:
+          CURRENT_DATE: ${{ steps.date.outputs.date }}
+          RELEASE_BODY: ${{steps.milestones_as_markdown.outputs.result}}
+        with:
+          script: |
+            name = `infra-team-sync-${process.env.CURRENT_DATE}`
+            tag = `${name}_${context.runNumber}`
+
+            try {
+              await github.rest.repos.createRelease({
+                name: name,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: process.env.RELEASE_BODY,
+                tag_name: tag,
+                draft: true,
+                generate_release_notes: true,
+                prerelease: false,
+              });
+            } catch (error) {
+              core.setFailed(error.message);
+            }
