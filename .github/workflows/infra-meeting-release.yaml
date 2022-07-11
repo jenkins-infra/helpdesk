@@ -49,14 +49,16 @@ jobs:
 
               let markdown = ''
               let category = 'Done'
+              let query = '?closed=1'
 
               // There should not be any closed issue in the 'next' milestone, only 'Done' ones
-              if (issuesState != 'closed') {
+              if (issuesState == 'open') {
                 category = (milestoneName != 'next') ? 'Work In Progress' : 'New/Important'
+                query = ''
               }
 
               if (issues.length > 0) {
-                markdown = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}?closed=1):`
+                markdown = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
                 for (const issue of issues) {
                   markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
                 }
@@ -65,8 +67,8 @@ jobs:
               return markdown
             }
 
-            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open')
-            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed')
+            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed')
+            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open')
             next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open')
 
             return `Markdown for the infra team sync meeting notes preparation:
