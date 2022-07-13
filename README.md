@@ -15,5 +15,7 @@ If your issue or bug concerns Jenkins itself, please open an issue here instead:
 
 Status of hosted services and maintenance announcements can be seen on a dedicated status page https://status.jenkins.io. You can stay updated of incidents and maintenance by following [our RSS feed](https://status.jenkins.io/index.xml) at the bottom of the status page.
 
+[Read more about last week updates](https://github.com/jenkins-infra/helpdesk/releases/tag/infra-team-sync-2022-07-12_2)
+
 ([infra team milestones](https://github.com/jenkins-infra/helpdesk/milestones))
 <!-- TODO Add FAQ below -->
