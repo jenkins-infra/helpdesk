@@ -38,7 +38,7 @@ body:
         - "trusted.ci.jenkins.io"
         - "weekly.ci.jenkins.io"
         - "Crowdin"
-        - "Digital Ocean"
+        - "DigitalOcean"
         - "Docker Hub"
         - "get.jenkins.io"
         - "GitHub"
