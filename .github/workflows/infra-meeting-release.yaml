@@ -47,7 +47,7 @@ jobs:
                 sort: 'updated',
                 per_page: 100,
               })
-              const issues = await github.paginate(opts).reverse()
+              const issues = await github.paginate(opts)
 
               let markdown = ''
               let category = 'Done'
