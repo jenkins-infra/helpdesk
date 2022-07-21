@@ -19,3 +19,5 @@ Status of hosted services and maintenance announcements can be seen on a dedicat
 
 ([infra team milestones](https://github.com/jenkins-infra/helpdesk/milestones))
 <!-- TODO Add FAQ below -->
+
+[![Generate meeting notes](https://github.com/jenkins-infra/helpdesk/actions/workflows/infra-meeting-release.yaml/badge.svg)](https://github.com/jenkins-infra/helpdesk/actions/workflows/infra-meeting-release.yaml)
