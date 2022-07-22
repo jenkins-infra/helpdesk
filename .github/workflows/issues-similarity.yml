@@ -10,7 +10,7 @@ jobs:
     if: github.event.issue.state == 'open'
     steps:
       - name: analysis
-        uses: actions-cool/issues-similarity-analysis@v1.0.0
+        uses: actions-cool/issues-similarity-analysis@v1
         with:
           filter-threshold: 0.7
           title-excludes: 'bug, jenkins'
