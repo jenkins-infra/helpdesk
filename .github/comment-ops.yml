@@ -1,0 +1,11 @@
+commands:
+  label:
+    enabled: true
+  removeLabel:
+    enabled: true
+  reopen:
+    enabled: true
+  reviewer:
+    enabled: true
+  transfer:
+    enabled: true
