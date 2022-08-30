@@ -40,13 +40,24 @@ jobs:
           result-encoding: string
           script: |
             const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState) {
-              const opts = github.rest.issues.listForRepo.endpoint.merge({
-                ...context.issue,
-                milestone,
-                state: issuesState,
-                sort: 'updated',
-                per_page: 100,
-              })
+              if (issuesState == 'closed') {
+                const opts = github.rest.issues.listForRepo.endpoint.merge({
+                  ...context.issue,
+                  milestone,
+                  state: issuesState,
+                  reason: 'complete',
+                  sort: 'updated',
+                  per_page: 100,
+                })
+              } else {
+                const opts = github.rest.issues.listForRepo.endpoint.merge({
+                  ...context.issue,
+                  milestone,
+                  state: issuesState,
+                  sort: 'updated',
+                  per_page: 100,
+                })
+              }
               const issues = await github.paginate(opts)
 
               let markdown = ''
