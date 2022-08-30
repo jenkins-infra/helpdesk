@@ -40,8 +40,9 @@ jobs:
           result-encoding: string
           script: |
             const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState) {
+              let ops;
               if (issuesState == 'closed') {
-                let opts = github.rest.issues.listForRepo.endpoint.merge({
+                opts = github.rest.issues.listForRepo.endpoint.merge({
                   ...context.issue,
                   milestone,
                   state: issuesState,
@@ -50,7 +51,7 @@ jobs:
                   per_page: 100,
                 })
               } else {
-                let opts = github.rest.issues.listForRepo.endpoint.merge({
+                opts = github.rest.issues.listForRepo.endpoint.merge({
                   ...context.issue,
                   milestone,
                   state: issuesState,
