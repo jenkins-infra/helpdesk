@@ -66,7 +66,6 @@ jobs:
 
               // There should not be any closed issue in the 'next' milestone, only 'Done' ones
               if (issuesState == 'open') {
-                category = (milestoneName != 'next') ? 'Work In Progress' : 'New/Important'
                 query = ''
               }
 
