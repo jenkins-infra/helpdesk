@@ -39,7 +39,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState) {
+            const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState, categoryName) {
               let ops;
               if (issuesState == 'closed') {
                 opts = github.rest.issues.listForRepo.endpoint.merge({
@@ -62,7 +62,6 @@ jobs:
               const issues = await github.paginate(opts)
 
               let markdown = ''
-              let category = 'Done'
               let query = '?closed=1'
 
               // There should not be any closed issue in the 'next' milestone, only 'Done' ones
@@ -72,7 +71,7 @@ jobs:
               }
 
               if (issues.length > 0) {
-                markdown = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
+                markdown = `* [${categoryName}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
                 for (const issue of issues) {
                   markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
                 }
@@ -81,9 +80,11 @@ jobs:
               return markdown
             }
 
-            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed')
-            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open')
-            next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open')
+            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'Done')
+            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', 'Work In Progress')
+            // Assuming the milestone N+1 exists, this will retrieve associated issues
+            wipFuture = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id + 1, context.payload.inputs.milestone_name, 'open', 'TODO next milestone')
+            next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open', 'New/Important)
 
             return `Markdown for the infra team sync meeting notes preparation:
             <pre>
@@ -91,7 +92,10 @@ jobs:
 
             ${wip}
 
+            ${wipFuture}
+
             ${next}
+
             </pre>
 
             <details><summary>Preview:</summary>
@@ -99,6 +103,8 @@ jobs:
             ${done}
 
             ${wip}
+
+            ${wipFuture}
 
             ${next}
 
