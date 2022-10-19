@@ -28,8 +28,8 @@ body:
       label: Permission level
       options:
         - "Read"
-        - "Write"
         - "Triage"
+        - "Write"
         - "Maintain"
         - "Admin"
     validations:
