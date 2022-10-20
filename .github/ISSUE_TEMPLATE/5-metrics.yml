@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        the jenkins agent name from the built logs.
+        the Jenkins agent name from the build logs.
   - type: input
     attributes:
       label: Jenkins Agent Name
@@ -16,9 +16,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        you can provide information about your built too, that will help providing accurate informations
+        you can provide information about your build too, that will help providing accurate informations
   - type: textarea
     attributes:
-      label: build link or informations
+      label: Build link or information
     validations:
       required: false
