@@ -1,0 +1,24 @@
+name: '📊 Infra Specific agent metrics'
+labels: ['metrics', 'triage']
+description: Request metrics concerning a specific jenkins agent from ci.jenkins.io.
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The Jenkins agent name from the build logs.
+  - type: input
+    attributes:
+      label: Jenkins Agent Name
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        You can provide a link and/or information about your build too, that will help providing accurate informations.
+  - type: textarea
+    attributes:
+      label: Build link or information
+    validations:
+      required: false
