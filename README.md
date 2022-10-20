@@ -9,7 +9,7 @@ If you want to report an issue or a bug with [one of the services run by the Jen
 - [🌐 Crowdin localization projects](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=crowdin&template=4-crowdin.yml): Request the creation of new projects on crowdin.jenkins.io (to localize a plugin) or update its members
 - [💬 Community forum](https://community.jenkins.io/): Please ask and answer questions here
 - [✉️ Mailing lists](https://www.jenkins.io/mailing-lists/): You can also raise a question on the infra mailing list
-- [📊 Infra Specific agent metrics](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=inframetrics&template=5-metrics.yml): Request infrastructure specific metrics on a Jenkins agent after a build
+- [📊 Infra Specific agent metrics](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=inframetrics&template=5-metrics.yml): Request infrastructure specific metrics on a Jenkins agent to monitor a build by yourself
 
 
 If your issue or bug concerns Jenkins itself, please open an issue here instead: https://issues.jenkins.io/projects/JENKINS
