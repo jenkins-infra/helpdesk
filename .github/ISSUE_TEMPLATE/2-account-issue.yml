@@ -1,0 +1,50 @@
+name: '👤 Account issue'
+labels: ['triage']
+description: An issue with your Jenkins account
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before hitting the button, please answer these questions.
+        It's helpful to search the existing GitHub issues first.
+        There is a chance that another user has already reported the issue you're facing, or it's a known issue that we're already aware of. 
+
+        Fill in as much of the template below as you can.
+        The more information we have the better we can help you.
+
+        You can reset the password of your Jenkins account (issues.jenkins.io, *.jenkins.io websites) by visiting the page accounts.jenkins.io and clicking on "reset my password".
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type(s) of account issue
+      description: "Pick the type(s) of issue you encountered"
+      multiple: true
+      options:
+        - "Lost password"
+        - "Didn't received email"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: |
+        Short summary
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Reproduction steps
+      description: |
+        Write bullet-point reproduction steps.
+        Use screenshots where appropriate, copy textual output otherwise. When in doubt, do both.
+        Include relevant logs, e.g. build link or snippet.
+      placeholder: |
+        1. Step 1: ...
+        2. Step 2: ...
+    validations:
+      required: false
