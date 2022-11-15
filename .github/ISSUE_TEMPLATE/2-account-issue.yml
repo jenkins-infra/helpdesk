@@ -23,6 +23,7 @@ body:
       options:
         - "Lost password"
         - "Didn't receive email"
+        - "Delete my account"
         - "Other"
     validations:
       required: true
@@ -35,6 +36,22 @@ body:
         Short summary
     validations:
       required: true
+  - type: input
+    id: username
+    attributes:
+      label: Jenkins Account Username
+      description: What is your Jenkins account username? (Might not be the same as your GitHub username)
+      placeholder: ex. hlemeur
+    validations:
+      required: false
+  - type: input
+    id: email
+    attributes:
+      label: Jenkins Account Email
+      description: What is your Jenkins account email? (Might not be the same as your GitHub email)
+      placeholder: ex. hlemeur@example.com
+    validations:
+      required: false
   - type: textarea
     id: reproduction-steps
     attributes:
