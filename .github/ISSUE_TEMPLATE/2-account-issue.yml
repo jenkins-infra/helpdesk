@@ -22,7 +22,7 @@ body:
       multiple: true
       options:
         - "Lost password"
-        - "Didn't received email"
+        - "Didn't receive email"
         - "Other"
     validations:
       required: true
