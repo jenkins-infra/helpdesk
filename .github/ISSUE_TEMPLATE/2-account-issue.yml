@@ -6,14 +6,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        Before hitting the button, please answer these questions.
-        It's helpful to search the existing GitHub issues first.
-        There is a chance that another user has already reported the issue you're facing, or it's a known issue that we're already aware of. 
-
         Fill in as much of the template below as you can.
         The more information we have the better we can help you.
 
-        You can reset the password of your Jenkins account (issues.jenkins.io, *.jenkins.io websites) by visiting the page accounts.jenkins.io and clicking on "reset my password".
+        **Note:** You can reset the password of your jenkins.io account (issues.jenkins.io, *.jenkins.io websites) yourself by going to accounts.jenkins.io then clicking on "reset my password".
   - type: dropdown
     id: type
     attributes:
@@ -21,10 +17,10 @@ body:
       description: "Pick the type(s) of issue you encountered"
       multiple: true
       options:
-        - "Lost password"
-        - "Didn't receive email"
-        - "Delete my account"
-        - "Other"
+        - "I've lost my password"
+        - "I didn't receive any email"
+        - "I want my account to be deleted"
+        - "Other (please describe in the summary below)"
     validations:
       required: true
 
@@ -35,33 +31,29 @@ body:
       description: |
         Short summary
     validations:
-      required: true
+      required: false
   - type: input
     id: username
     attributes:
-      label: Jenkins Account Username
-      description: What is your Jenkins account username? (Might not be the same as your GitHub username)
+      label: jenkins.io account username
+      description: What is your jenkins.io account username? (Might not be the same as your GitHub username)
       placeholder: ex. hlemeur
     validations:
       required: false
   - type: input
     id: email
     attributes:
-      label: Jenkins Account Email
-      description: What is your Jenkins account email? (Might not be the same as your GitHub email)
+      label: jenkins.io account email
+      description: What is your jenkins.io account email? (Might not be the same as your GitHub email)
       placeholder: ex. hlemeur@example.com
     validations:
       required: false
   - type: textarea
-    id: reproduction-steps
+    id: url
     attributes:
-      label: Reproduction steps
+      label: Concerned URL(s)
       description: |
-        Write bullet-point reproduction steps.
-        Use screenshots where appropriate, copy textual output otherwise. When in doubt, do both.
-        Include relevant logs, e.g. build link or snippet.
-      placeholder: |
-        1. Step 1: ...
-        2. Step 2: ...
+        From which URL(s) are you trying to login?
+      placeholder: account.jenkins.io
     validations:
-      required: false
+      required: true
