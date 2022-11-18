@@ -9,7 +9,7 @@ body:
         Fill in as much of the template below as you can.
         The more information we have, the better we can help you.
 
-        **Note:** You can reset the password of your jenkins.io account (issues.jenkins.io, *.jenkins.io websites) yourself by going to accounts.jenkins.io then clicking on "reset my password".
+        **Note:** You can reset the password of your jenkins.io account (issues.jenkins.io, *.jenkins.io websites) yourself by going to [accounts.jenkins.io](https://accounts.jenkins.io) then clicking on "Forgot password".
   - type: dropdown
     id: type
     attributes:
