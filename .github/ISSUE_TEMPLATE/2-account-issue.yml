@@ -52,8 +52,6 @@ body:
     id: url
     attributes:
       label: Which URL are you trying to login at?
-      description: |
-        From which URL(s) are you trying to login?
       placeholder: account.jenkins.io
     validations:
       required: true
