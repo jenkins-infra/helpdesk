@@ -1,6 +1,6 @@
 name: '👤 Account issue'
 labels: ['triage']
-description: An issue with your Jenkins account
+description: An issue with your jenkins.io account
 
 body:
   - type: markdown
