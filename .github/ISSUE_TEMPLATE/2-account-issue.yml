@@ -1,0 +1,57 @@
+name: '👤 Account issue'
+labels: ['triage']
+description: An issue with your jenkins.io account
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in as much of the template below as you can.
+        The more information we have, the better we can help you.
+
+        **Note:** You can reset the password of your jenkins.io account (issues.jenkins.io, *.jenkins.io websites) yourself by going to accounts.jenkins.io then clicking on "reset my password".
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type(s) of account issue
+      description: "Pick the type(s) of issue you encountered"
+      multiple: true
+      options:
+        - "I've lost my password"
+        - "I didn't receive any email"
+        - "I want my account to be deleted"
+        - "Other (please describe in the summary below)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: |
+        Short summary
+    validations:
+      required: false
+  - type: input
+    id: username
+    attributes:
+      label: jenkins.io account username
+      description: What is your jenkins.io account username? (Might not be the same as your GitHub username)
+      placeholder: ex. hlemeur
+    validations:
+      required: false
+  - type: input
+    id: email
+    attributes:
+      label: jenkins.io account email
+      description: What is your jenkins.io account email? (Might not be the same as your GitHub email)
+      placeholder: ex. hlemeur@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: url
+    attributes:
+      label: Which URL are you trying to login at?
+      placeholder: account.jenkins.io
+    validations:
+      required: true
