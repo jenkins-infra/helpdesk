@@ -4,7 +4,7 @@ Support for Infrastructure related issues for the Jenkins project.
 
 If you want to report an issue or a bug with [one of the services run by the Jenkins project](https://www.jenkins.io/projects/infrastructure/), [**open an issue here**](https://github.com/jenkins-infra/helpdesk/issues/new/choose)!
 - [🧩 Issue](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=triage&template=1-report-issue.yml): An issue with the Jenkins projects Infrastructure
-- [👤 Account issue](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=triage&template=2-account-issue.yml): An issue with your Jenkins account
+- [👤 Account issue](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=triage&template=2-account-issue.yml): An issue with your jenkins.io account
 - [🚀 GitHub permissions](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=github-permissions&template=3-github-permissions.yml): Request GitHub permissions
 - [📝 Documentation](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=documentation&template=4-documentation.yml): Let us know if any documentation is missing or could be improved
 - [🌐 Crowdin localization projects](https://github.com/jenkins-infra/helpdesk/issues/new?assignees=&labels=crowdin&template=5-crowdin.yml): Request the creation of new projects on crowdin.jenkins.io (to localize a plugin) or update its members
