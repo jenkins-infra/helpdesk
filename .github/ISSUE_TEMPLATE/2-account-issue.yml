@@ -8,8 +8,6 @@ body:
       value: |
         Fill in as much of the template below as you can.
         The more information we have, the better we can help you.
-
-        **Note:** You can reset the password of your jenkins.io account (issues.jenkins.io, *.jenkins.io websites) yourself by going to [accounts.jenkins.io](https://accounts.jenkins.io) then clicking on "Forgot password".
   - type: dropdown
     id: type
     attributes:
@@ -19,11 +17,15 @@ body:
       options:
         - "I've lost my password"
         - "I didn't receive any email"
+        - "I've been blocked by the anti-spam system"
         - "I want my account to be deleted"
         - "Other (please describe in the summary below)"
     validations:
       required: true
-
+  - type: markdown
+    attributes:
+      value: |
+        **Note:** You can reset the password of your jenkins.io account (issues.jenkins.io, *.jenkins.io websites) yourself by going to [accounts.jenkins.io](https://accounts.jenkins.io) then clicking on "Forgot password".
   - type: textarea
     id: summary
     attributes:
