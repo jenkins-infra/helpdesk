@@ -86,13 +86,13 @@ jobs:
             next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open')
 
             return `Markdown for the infra team sync meeting notes preparation:
-            <pre>
+            <pre><code>
             ${done}
 
             ${wip}
 
             ${next}
-            </pre>
+            </code></pre>
 
             <details><summary>Preview:</summary>
 
