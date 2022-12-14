@@ -97,11 +97,9 @@ jobs:
             <details><summary>Preview:</summary>
 
             ${done}
-            
             * New items:
                 * placeholder 1
                 * placeholder 2
-            
             ${wip}
 
             ${next}
