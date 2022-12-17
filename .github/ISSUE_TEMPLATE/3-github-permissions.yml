@@ -6,8 +6,20 @@ body:
   - type: markdown
     attributes:
       value: |
-        Permissions are generally handled in the [repository-permissions-updater](https://github.com/jenkins-infra/repository-permissions-updater/), this issue template
-        is for exceptions to that if it can't be handled there.
+        For any of the following requests concerning a plugin:
+        - [Requesting permissions](https://github.com/jenkins-infra/repository-permissions-updater#requesting-permissions)
+        - [Managing permissions](https://github.com/jenkins-infra/repository-permissions-updater#managing-permissions)
+        - [Adding a new plugin](https://github.com/jenkins-infra/repository-permissions-updater#adding-a-new-plugin)
+        - [Adding a new uploader to an existing plugin](https://github.com/jenkins-infra/repository-permissions-updater#adding-a-new-uploader-to-an-existing-plugin)
+        - [Deprecating a plugin](https://github.com/jenkins-infra/repository-permissions-updater#deprecating-a-plugin)
+        - [Renaming a plugin](https://github.com/jenkins-infra/repository-permissions-updater#renaming-a-plugin)
+        - [Changing a plugin's groupId](https://github.com/jenkins-infra/repository-permissions-updater#changing-a-plugins-groupid)
+        - [Managing Continuous Delivery (JEP-229 CD)](https://github.com/jenkins-infra/repository-permissions-updater#managing-continuous-delivery-jep-229-cd)
+        - [Managing a plugin security process](https://github.com/jenkins-infra/repository-permissions-updater#managing-security-process)
+        - [Managing plugin issue trackers](https://github.com/jenkins-infra/repository-permissions-updater#managing-issue-trackers)
+
+        Please see the [repository-permissions-updater](https://github.com/jenkins-infra/repository-permissions-updater/).
+        This issue template is for exceptions to that if it can't be handled there.
   - type: textarea
     attributes:
       label: GitHub repositories
