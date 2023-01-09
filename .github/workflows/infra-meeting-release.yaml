@@ -46,6 +46,7 @@ jobs:
                   ...context.issue,
                   milestone,
                   state: issuesState,
+                  reason: 'complete',
                   sort: 'updated',
                   per_page: 100,
                 })
@@ -71,17 +72,9 @@ jobs:
               }
 
               if (issues.length > 0) {
-                markdown = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
-                markdownClosed = ''
+                markdown = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}) (${issues.length}):`
                 for (const issue of issues) {
-                  if (issue.reason == 'completed') {
-                    markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
-                  } else {
-                    markdownClosed = markdownClosed.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
-                  }
-                }
-                if (markdownClosed != '') {
-                  markdown = markdown.concat("\r\n\r\n").concat(`* [Closed as not planned](${context.payload.repository.html_url}/milestone/${milestone}${query}):`).concat(markdownClosed)
+                  markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
                 }
               }
 
