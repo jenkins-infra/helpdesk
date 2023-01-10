@@ -46,7 +46,7 @@ jobs:
                   ...context.issue,
                   milestone,
                   state: issuesState,
-                  reason: closeReason,
+                  state_reason: closeReason,
                   sort: 'updated',
                   per_page: 100,
                 })
@@ -82,7 +82,7 @@ jobs:
             }
 
             done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'completed')
-            notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not planned')
+            notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not_planned')
             wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', '')
             next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open', '')
 
