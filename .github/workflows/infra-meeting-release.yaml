@@ -40,25 +40,13 @@ jobs:
           result-encoding: string
           script: |
             const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState, closeReason) {
-              let ops;
-              if (issuesState == 'closed') {
-                opts = github.rest.issues.listForRepo.endpoint.merge({
-                  ...context.issue,
-                  milestone,
-                  state: issuesState,
-                  state_reason: closeReason,
-                  sort: 'updated',
-                  per_page: 100,
-                })
-              } else {
-                opts = github.rest.issues.listForRepo.endpoint.merge({
-                  ...context.issue,
-                  milestone,
-                  state: issuesState,
-                  sort: 'updated',
-                  per_page: 100,
-                })
-              }
+              let ops = github.rest.issues.listForRepo.endpoint.merge({
+                ...context.issue,
+                milestone,
+                state: issuesState,
+                sort: 'updated',
+                per_page: 100,
+              })
               const issues = await github.paginate(opts)
 
               let markdown = ''
@@ -74,7 +62,9 @@ jobs:
               if (issues.length > 0) {
                 markdown = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
                 for (const issue of issues) {
-                  markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
+                  if ((issuesState == 'open') || ((issuesState == 'closed') && (issue.stateReason = closeReason))){
+                    markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
+                  }
                 }
               }
 
