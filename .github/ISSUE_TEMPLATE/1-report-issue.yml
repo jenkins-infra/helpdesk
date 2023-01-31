@@ -29,6 +29,7 @@ body:
         - "Accounts"
         - "Archives"
         - "Artifactory"
+        - "Artifact-caching-proxy"
         - "AWS"
         - "Azure"
         - "cert.ci.jenkins.io"
@@ -44,6 +45,7 @@ body:
         - "GitHub"
         - "Helpdesk"
         - "Incrementals"
+        - "jenkins.io website"
         - "Jira"
         - "LDAP"
         - "Mailing lists"
@@ -52,6 +54,7 @@ body:
         - "plugins.jenkins.io"
         - "VPN"
         - "Update center"
+        - "Uplink"
         - "Oracle"
         - "Other"
     validations:
