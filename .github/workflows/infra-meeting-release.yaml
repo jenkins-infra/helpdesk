@@ -59,21 +59,25 @@ jobs:
                 query = ''
               }
 
+              title = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
+
               if (issues.length > 0) {
-                markdown = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
                 for (const issue of issues) {
                   if ((issuesState == 'open') || ((issuesState == 'closed') && (issue.state_reason == closeReason))){
                     markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
                   }
                 }
               }
-
+              
+              if (markdown != '') markdown = title.concat("\r\n").concat(markdown)
+              
               return markdown
             }
 
             done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'completed')
             notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not_planned')
             wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', '')
+            todo = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id + 1, context.payload.inputs.next_milestone_name, 'open', '')
             next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open', '')
 
             return `Markdown for the infra team sync meeting notes preparation:
@@ -97,7 +101,11 @@ jobs:
             
             ${wip}
 
+            ${todo}
+
+            <!--
             ${next}
+            -->
 
             </details>
 
