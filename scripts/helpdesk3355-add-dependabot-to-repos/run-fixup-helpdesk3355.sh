@@ -34,11 +34,7 @@ if ! [ -x "$(command -v multi-gitter)" ]; then
   exit 1
 fi
 
-# Copy the dependabot config file to a temporary folder
-mkdir -p /tmp/helpdesk3355
-cp dependabot.yml /tmp/helpdesk3355/dependabot.yml
-
-multi-gitter run ./copy-dependabot.sh --reviewers dduportal --reviewers smerle33 --branch helpdesk3355-add-dependabot --log-level=debug -m "chore: add dependabot to ensure GitHub actions are tracked" --pr-body "Ref: https://github.com/jenkins-infra/helpdesk/issues/3355" \
+multi-gitter run ./mv-dependabot.sh --reviewers dduportal --reviewers smerle33 --branch helpdesk3355-add-dependabot --log-level=debug -m "fixup: move dependabot to the correct folder" --pr-body "Ref: https://github.com/jenkins-infra/helpdesk/issues/3355" \
 --repo jenkins-infra/account-app \
 --repo jenkins-infra/docker-404 \
 --repo jenkins-infra/docker-builder \
@@ -58,5 +54,3 @@ multi-gitter run ./copy-dependabot.sh --reviewers dduportal --reviewers smerle33
 --repo jenkins-infra/incrementals-publisher \
 --repo jenkins-infra/rating \
 --repo jenkins-infra/release
-
-rm -rf /tmp/helpdesk3355
