@@ -39,6 +39,7 @@ mkdir -p /tmp/helpdesk3355
 cp dependabot.yml /tmp/helpdesk3355/dependabot.yml
 
 multi-gitter run ./copy-dependabot.sh --reviewers dduportal --reviewers smerle33 --branch helpdesk3355-add-dependabot --log-level=debug -m "chore: add dependabot to ensure GitHub actions are tracked" --pr-body "Ref: https://github.com/jenkins-infra/helpdesk/issues/3355" \
+--repo jenkins-infra/account-app \
 --repo jenkins-infra/docker-404 \
 --repo jenkins-infra/docker-builder \
 --repo jenkins-infra/docker-confluence-data \
