@@ -19,12 +19,12 @@ if ! [ -x "$(command -v multi-gitter)" ]; then
   exit 1
 fi
 
-if ! [ -n ${GITHUB_TOKEN} ]; then
+if ! [ -n ${GITHUB_TOKEN-} ]; then
   echo 'Error: the GITHUB_TOKEN env var is not set.' >&2
   exit 1
 fi
 
-if ! [ -n ${ACTIONS_TOKEN} ]; then
+if ! [ -n ${ACTIONS_TOKEN-} ]; then
   echo 'Error: the ACTIONS_TOKEN env var is not set.' >&2
   exit 1
 fi
