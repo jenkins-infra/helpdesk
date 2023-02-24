@@ -1,16 +1,14 @@
 name: Issues Similarity Analysis
-
 on:
   issues:
     types: [opened, edited]
-
 jobs:
   similarity-analysis:
     runs-on: ubuntu-latest
     if: github.event.issue.state == 'open'
     steps:
       - name: analysis
-        uses: actions-cool/issues-similarity-analysis@v1
+        uses: actions-cool/issues-similarity-analysis@8f46978e3e8b79d736997a225c95d27d9029f294 # v1
         with:
           filter-threshold: 0.7
           title-excludes: 'bug, jenkins'

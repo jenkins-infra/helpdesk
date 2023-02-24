@@ -1,5 +1,4 @@
 name: "Prepare infra meeting notes as release"
-
 on:
   workflow_dispatch:
     inputs:
@@ -23,7 +22,6 @@ on:
         required: true
         default: 'next'
         type: string
-
 jobs:
   release:
     name: "Prepare infra meeting notes as release"
@@ -32,95 +30,15 @@ jobs:
       - name: "Get current date"
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-
       - name: "Generate markdown from current and next milestone"
         id: milestones_as_markdown
-        uses: "actions/github-script@v6"
+        uses: actions/github-script@v6
         with:
           result-encoding: string
-          script: |
-            const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState, closeReason) {
-              const opts = github.rest.issues.listForRepo.endpoint.merge({
-                ...context.issue,
-                milestone,
-                state: issuesState,
-                sort: 'updated',
-                per_page: 100,
-              })
-              const issues = await github.paginate(opts)
-
-              let markdown = ''
-              let category = (closeReason == 'completed') ? 'Done' : 'Closed as not planned'
-              let query = '?closed=1'
-
-              // There should not be any closed issue in the 'next' milestone, only 'Done' ones
-              if (issuesState == 'open') {
-                category = (milestoneName != 'next') ? 'Work In Progress' : 'Backlog'
-                if (milestoneName == 'todo') category = 'TODO (next milestone)'
-                query = ''
-              }
-
-              title = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
-
-              if (issues.length > 0) {
-                for (const issue of issues) {
-                  if ((issuesState == 'open') || ((issuesState == 'closed') && (issue.state_reason == closeReason))){
-                    markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url})`)
-                  }
-                }
-              }
-              
-              if (markdown != '') markdown = title.concat("\r\n").concat(markdown)
-              
-              return markdown
-            }
-
-            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'completed')
-            notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not_planned')
-            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', '')
-            try {
-              todoMilestone = parseInt(context.payload.inputs.milestone_id) + 1
-              todo = await getMilestoneAsMarkdown(todoMilestone, 'todo', 'open', '')
-            } catch (error) {
-              console.error(error);
-              todo = ''
-            }
-            next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open', '')
-
-            return `Markdown for the infra team sync meeting notes preparation:
-            <pre><code>
-            ${done}
-
-            ${notPlanned}
-
-            ${wip}
-
-            ${next}
-            </code></pre>
-
-            <details><summary>Preview:</summary>
-
-            ${done}
-            
-            * New items:
-                * placeholder 1
-                * placeholder 2
-            
-            ${wip}
-
-            ${todo}
-
-            <!--
-            ${next}
-            -->
-
-            </details>
-
-            Generated from the ["${context.payload.inputs.milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.milestone_id}) and the ["${context.payload.inputs.next_milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.next_milestone_id}) milestones.`
-
+          script: "const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState, closeReason) {\n  const opts = github.rest.issues.listForRepo.endpoint.merge({\n    ...context.issue,\n    milestone,\n    state: issuesState,\n    sort: 'updated',\n    per_page: 100,\n  })\n  const issues = await github.paginate(opts)\n\n  let markdown = ''\n  let category = (closeReason == 'completed') ? 'Done' : 'Closed as not planned'\n  let query = '?closed=1'\n\n  // There should not be any closed issue in the 'next' milestone, only 'Done' ones\n  if (issuesState == 'open') {\n    category = (milestoneName != 'next') ? 'Work In Progress' : 'Backlog'\n    if (milestoneName == 'todo') category = 'TODO (next milestone)'\n    query = ''\n  }\n\n  title = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`\n\n  if (issues.length > 0) {\n    for (const issue of issues) {\n      if ((issuesState == 'open') || ((issuesState == 'closed') && (issue.state_reason == closeReason))){\n        markdown = markdown.concat(\"\\r\\n\").concat(`  * [${issue.title}](${issue.html_url})`)\n      }\n    }\n  }\n  \n  if (markdown != '') markdown = title.concat(\"\\r\\n\").concat(markdown)\n  \n  return markdown\n}\n\ndone = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'completed')\nnotPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not_planned')\nwip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', '')\ntry {\n  todoMilestone = parseInt(context.payload.inputs.milestone_id) + 1\n  todo = await getMilestoneAsMarkdown(todoMilestone, 'todo', 'open', '')\n} catch (error) {\n  console.error(error);\n  todo = ''\n}\nnext = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open', '')\n\nreturn `Markdown for the infra team sync meeting notes preparation:\n<pre><code>\n${done}\n\n${notPlanned}\n\n${wip}\n\n${next}\n</code></pre>\n\n<details><summary>Preview:</summary>\n\n${done}\n\n* New items:\n    * placeholder 1\n    * placeholder 2\n\n${wip}\n\n${todo}\n\n<!--\n${next}\n-->\n\n</details>\n\nGenerated from the [\"${context.payload.inputs.milestone_name}\"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.milestone_id}) and the [\"${context.payload.inputs.next_milestone_name}\"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.next_milestone_id}) milestones.`\n"
       - name: "Create release"
         id: create_release
-        uses: "actions/github-script@v6"
+        uses: actions/github-script@v6
         env:
           CURRENT_DATE: ${{ steps.date.outputs.date }}
           RELEASE_BODY: ${{steps.milestones_as_markdown.outputs.result}}
