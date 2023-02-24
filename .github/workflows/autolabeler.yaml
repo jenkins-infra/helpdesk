@@ -6,7 +6,7 @@ jobs:
   autolabeler:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@dc323e67f16fb5f7663d20ff7941f27f5809e9b6 # ratchet:actions/checkout@v2.6.0
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # ratchet:actions/checkout@v3.3.0
       - uses: stefanbuck/github-issue-parser@26aa569a236774fa15b73a965595c0a0ac8ccf41 # ratchet:stefanbuck/github-issue-parser@v3
         id: issue-parser
         with:
