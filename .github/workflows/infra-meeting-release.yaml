@@ -1,5 +1,4 @@
 name: "Prepare infra meeting notes as release"
-
 on:
   workflow_dispatch:
     inputs:
@@ -23,7 +22,6 @@ on:
         required: true
         default: 'next'
         type: string
-
 jobs:
   release:
     name: "Prepare infra meeting notes as release"
@@ -32,10 +30,9 @@ jobs:
       - name: "Get current date"
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-
       - name: "Generate markdown from current and next milestone"
         id: milestones_as_markdown
-        uses: "actions/github-script@v6"
+        uses: actions/github-script@v6
         with:
           result-encoding: string
           script: |
@@ -120,7 +117,7 @@ jobs:
 
       - name: "Create release"
         id: create_release
-        uses: "actions/github-script@v6"
+        uses: actions/github-script@v6
         env:
           CURRENT_DATE: ${{ steps.date.outputs.date }}
           RELEASE_BODY: ${{steps.milestones_as_markdown.outputs.result}}
