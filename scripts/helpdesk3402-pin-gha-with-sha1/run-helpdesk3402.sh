@@ -29,9 +29,11 @@ if ! [ -n ${ACTIONS_TOKEN-} ]; then
   exit 1
 fi
 
+# Get ratchet binary from https://github.com/sethvargo/ratchet/releases
+
 # Copy the ratchet binary to a temporary folder in order to ensure an absolute path to it for use in the script called by multi-gitter
 mkdir -p /tmp/helpdesk3402
-cp ratchet /tmp/helpdesk3402/ratchet
+cp ./ratchet /tmp/helpdesk3402/ratchet
 # ensure it's executable
 chmod +x /tmp/helpdesk3402/ratchet
 
