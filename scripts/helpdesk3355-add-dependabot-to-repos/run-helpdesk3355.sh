@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# This script ensures the presence of a dependabot configuration file in every @jenkins-infra repository using GitHub Actions
+# See https://github.com/jenkins-infra/helpdesk/issues/3355
+#
 # Usage:
 #
 # Requirements:
@@ -31,6 +34,11 @@
 
 if ! [ -x "$(command -v multi-gitter)" ]; then
   echo 'Error: multi-gitter is not installed.' >&2
+  exit 1
+fi
+
+if ! [ -n ${GITHUB_TOKEN} ]; then
+  echo 'Error: the GITHUB_TOKEN env var is not set.' >&2
   exit 1
 fi
 
