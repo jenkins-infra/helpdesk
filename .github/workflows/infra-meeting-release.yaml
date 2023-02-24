@@ -45,16 +45,20 @@ jobs:
                 per_page: 100,
               })
               const issues = await github.paginate(opts)
+
               let markdown = ''
               let category = (closeReason == 'completed') ? 'Done' : 'Closed as not planned'
               let query = '?closed=1'
+
               // There should not be any closed issue in the 'next' milestone, only 'Done' ones
               if (issuesState == 'open') {
                 category = (milestoneName != 'next') ? 'Work In Progress' : 'Backlog'
                 if (milestoneName == 'todo') category = 'TODO (next milestone)'
                 query = ''
               }
+
               title = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
+
               if (issues.length > 0) {
                 for (const issue of issues) {
                   if ((issuesState == 'open') || ((issuesState == 'closed') && (issue.state_reason == closeReason))){
@@ -67,6 +71,7 @@ jobs:
               
               return markdown
             }
+
             done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'completed')
             notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not_planned')
             wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', '')
@@ -78,14 +83,20 @@ jobs:
               todo = ''
             }
             next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open', '')
+
             return `Markdown for the infra team sync meeting notes preparation:
             <pre><code>
             ${done}
+
             ${notPlanned}
+
             ${wip}
+
             ${next}
             </code></pre>
+
             <details><summary>Preview:</summary>
+
             ${done}
             
             * New items:
@@ -93,11 +104,15 @@ jobs:
                 * placeholder 2
             
             ${wip}
+
             ${todo}
+
             <!--
             ${next}
             -->
+
             </details>
+
             Generated from the ["${context.payload.inputs.milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.milestone_id}) and the ["${context.payload.inputs.next_milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.next_milestone_id}) milestones.`
 
       - name: "Create release"
