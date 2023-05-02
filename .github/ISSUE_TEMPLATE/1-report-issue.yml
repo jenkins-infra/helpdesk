@@ -39,6 +39,7 @@ body:
         - "trusted.ci.jenkins.io"
         - "weekly.ci.jenkins.io"
         - "Crowdin"
+        - "Datadog"
         - "DigitalOcean"
         - "Docker Hub"
         - "get.jenkins.io"
