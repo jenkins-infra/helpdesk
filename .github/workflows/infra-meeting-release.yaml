@@ -41,7 +41,8 @@ jobs:
                 ...context.issue,
                 milestone,
                 state: issuesState,
-                sort: 'updated',
+                sort: 'created',
+                direction: 'asc',
                 per_page: 100,
               })
               const issues = await github.paginate(opts)
