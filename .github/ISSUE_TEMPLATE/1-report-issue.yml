@@ -50,6 +50,7 @@ body:
         - "Jira"
         - "LDAP"
         - "Mailing lists"
+        - "mirrors.jenkins.io"
         - "IRC"
         - "pkg.jenkins.io"
         - "plugins.jenkins.io"
