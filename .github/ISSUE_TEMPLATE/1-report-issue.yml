@@ -54,6 +54,7 @@ body:
         - "IRC"
         - "pkg.jenkins.io"
         - "plugins.jenkins.io"
+        - "stats.jenkins.io"
         - "VPN"
         - "Update center"
         - "Uplink"
