@@ -63,7 +63,7 @@ jobs:
               if (issues.length > 0) {
                 for (const issue of issues) {
                   if ((issuesState == 'open') || ((issuesState == 'closed') && (issue.state_reason == closeReason))){
-                    const assigned = issues.assignees.join(', ')
+                    const assigned = issues.assignees ? issues.assignees.join(', ') : 'unassigned'
                     markdown = markdown.concat("\r\n").concat(`  * [${issue.title}](${issue.html_url}) (${assigned})`)
                   }
                 }
