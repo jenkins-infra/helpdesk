@@ -38,6 +38,7 @@ body:
         - "release.ci.jenkins.io"
         - "trusted.ci.jenkins.io"
         - "weekly.ci.jenkins.io"
+        - "community.jenkins.io"
         - "contributors.jenkins.io"
         - "Crowdin"
         - "Datadog"
