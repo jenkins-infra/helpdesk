@@ -44,6 +44,7 @@ body:
         - "Datadog"
         - "DigitalOcean"
         - "Docker Hub"
+        - "docs.jenkins.io"
         - "get.jenkins.io"
         - "GitHub"
         - "Helpdesk"
