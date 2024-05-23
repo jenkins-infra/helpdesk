@@ -1,3 +1,9 @@
+❗**This plugin has been moved to Sonatype's private organization where development will continue**
+
+❗Please refer to the following document to learn how to use it in your Jenkins instance:
+
+❗https://help.sonatype.com/en/sonatype-platform-plugin-for-jenkins.html
+
 # Help desk
 
 Support for Infrastructure related issues for the Jenkins project.
