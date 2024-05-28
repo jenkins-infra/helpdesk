@@ -11,17 +11,6 @@ on:
         required: true
         default: 'current'
         type: string
-      next_milestone_id:
-        description: '"Next" milestone id'
-        required: true
-        # "permanent" 'next' milestone: https://github.com/jenkins-infra/helpdesk/milestone/10
-        default: '10'
-        type: string
-      next_milestone_name:
-        description: '"Next" milestone name'
-        required: true
-        default: 'next'
-        type: string
 jobs:
   release:
     name: "Prepare infra meeting notes as release"
@@ -30,7 +19,7 @@ jobs:
       - name: "Get current date"
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-      - name: "Generate markdown from current and next milestone"
+      - name: "Generate markdown from current milestone"
         id: milestones_as_markdown
         uses: actions/github-script@v6
         with:
@@ -50,13 +39,6 @@ jobs:
               let markdown = ''
               let category = (closeReason == 'completed') ? 'Done' : 'Closed as not planned'
               let query = '?closed=1'
-
-              // There should not be any closed issue in the 'next' milestone, only 'Done' ones
-              if (issuesState == 'open') {
-                category = (milestoneName != 'next') ? 'Work In Progress' : 'Backlog'
-                if (milestoneName == 'todo') category = 'TODO (next milestone)'
-                query = ''
-              }
 
               title = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
 
@@ -83,7 +65,6 @@ jobs:
               console.error(error);
               todo = ''
             }
-            next = await getMilestoneAsMarkdown(context.payload.inputs.next_milestone_id, context.payload.inputs.next_milestone_name, 'open', '')
 
             return `Markdown for the infra team sync meeting notes preparation:
             <pre><code>
@@ -92,8 +73,6 @@ jobs:
             ${notPlanned}
 
             ${wip}
-
-            ${next}
             </code></pre>
 
             <details><summary>Preview:</summary>
@@ -108,13 +87,9 @@ jobs:
 
             ${todo}
 
-            <!--
-            ${next}
-            -->
-
             </details>
 
-            Generated from the ["${context.payload.inputs.milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.milestone_id}) and the ["${context.payload.inputs.next_milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.next_milestone_id}) milestones.`
+            Generated from the ["${context.payload.inputs.milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.milestone_id}) milestones.`
 
       - name: "Create release"
         id: create_release
