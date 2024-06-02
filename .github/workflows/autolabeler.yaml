@@ -6,12 +6,11 @@ jobs:
   autolabeler:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: stefanbuck/github-issue-parser@26aa569a236774fa15b73a965595c0a0ac8ccf41 # v3
+      - uses: actions/checkout@v4
+      - uses: stefanbuck/github-issue-parser@2d2ff50d4aae06ab58d26bf59468d98086605f11 # v3
         id: issue-parser
         with:
           template-path: .github/ISSUE_TEMPLATE/1-report-issue.yml
-      - run: echo "ISSUE_LABELS=$(echo '${{ fromJSON(steps.issue-parser.outputs.jsonString).services }}' | tr '[:upper:]' '[:lower:]' | sed 's/"//g' | sed 's/ //g')" >> $GITHUB_ENV
       - name: Generate token
         id: generate_token
         uses: tibdex/github-app-token@b62528385c34dbc9f38e5f4225ac829252d1ea92 # v1
@@ -24,3 +23,5 @@ jobs:
           repo-token: ${{ steps.generate_token.outputs.token }}
           add-labels: "${{ env.ISSUE_LABELS }}"
           remove-labels: "other"
+        env:
+          ISSUE_LABELS: ${{ steps.issue-parser.outputs.issueparser_services }}
