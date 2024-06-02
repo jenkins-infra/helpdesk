@@ -26,5 +26,5 @@ jobs:
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
-          LABELS: env.svc_labels
+          LABELS: ${{ env.svc_labels }}
           RM_LABELS: "other"
