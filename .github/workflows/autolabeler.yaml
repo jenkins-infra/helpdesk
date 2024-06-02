@@ -11,6 +11,10 @@ jobs:
         id: issue-parser
         with:
           template-path: .github/ISSUE_TEMPLATE/1-report-issue.yml
+      - name: "Trim services list using only shell variable internal (no subshell to avoid injection!)"
+        env:
+          SERVICES: ${{ steps.issue-parser.outputs.issueparser_services }}
+        run: echo "svc_labels=${SERVICES// /}==" >> "$GITHUB_ENV"
       - name: Generate token
         id: generate_token
         uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2
@@ -22,5 +26,5 @@ jobs:
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
-          LABELS: ${{ steps.issue-parser.outputs.issueparser_services }}
+          LABELS: env.svc_labels
           RM_LABELS: "other"
