@@ -17,11 +17,10 @@ jobs:
         with:
           app_id: ${{ secrets.JENKINS_INFRA_HELPDESK_APP_ID }}
           private_key: ${{ secrets.JENKINS_INFRA_HELPDESK_APP_PRIVATE_KEY }}
-      - uses: andymckay/labeler@3a4296e9dcdf9576b0456050db78cfd34853f260 # master
-        id: autolabeler
-        with:
-          repo-token: ${{ steps.generate_token.outputs.token }}
-          add-labels: "${{ env.ISSUE_LABELS }}"
-          remove-labels: "other"
+      - run: gh issue edit "$NUMBER" --add-label "$LABELS" --remove-label "$RM_LABELS"
         env:
-          ISSUE_LABELS: ${{ steps.issue-parser.outputs.issueparser_services }}
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          LABELS: ${{ steps.issue-parser.outputs.issueparser_services }}
+          RM_LABELS: "other"
