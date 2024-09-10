@@ -25,7 +25,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState, closeReason) {
+            const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState, closeReason, labels) {
               const opts = github.rest.issues.listForRepo.endpoint.merge({
                 ...context.issue,
                 milestone,
@@ -33,6 +33,7 @@ jobs:
                 sort: 'created',
                 direction: 'desc',
                 per_page: 100,
+                labels: labels,
               })
               const issues = await github.paginate(opts)
 
@@ -41,7 +42,11 @@ jobs:
               let query = ''
               
               if (issuesState == 'open') {
-                category = 'Work in Progress'
+                if (labels == 'triage') {
+                  category = 'New Issues (to triage)'
+                } else {
+                  category = 'Work in Progress'
+                }
               } else {
                 // issues states can only be 'closed' if not 'open'
                 query = '?closed=1'
@@ -68,12 +73,13 @@ jobs:
               return markdown
             }
 
-            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'completed')
-            notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not_planned')
-            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', '')
+            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'completed', '')
+            notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not_planned', '')
+            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', '', '')
+            
             try {
               todoMilestone = parseInt(context.payload.inputs.milestone_id) + 1
-              todo = await getMilestoneAsMarkdown(todoMilestone, 'todo', 'open', '')
+              todo = await getMilestoneAsMarkdown('', context.payload.inputs.milestone_name, 'open', '', 'triage')
             } catch (error) {
               console.error(error);
               todo = ''
@@ -86,6 +92,9 @@ jobs:
             ${notPlanned}
 
             ${wip}
+
+            ${todo}
+            
             </code></pre>
 
             <details><summary>Preview:</summary>
