@@ -37,7 +37,18 @@ jobs:
               const issues = await github.paginate(opts)
 
               let markdown = ''
-              let category = (closeReason == 'completed') ? 'Done' : 'Closed as not planned'
+              let category = '' 
+              if (issuesState == 'open') {
+                category = 'Work in Progress'
+              } else {
+                // issues states can only be 'closed' if not 'open'
+                if (closeReason == 'completed') {
+                  category = 'Done'
+                } else {
+                  // Close reason can only be "Not planned" if not "Completed"
+                  category = 'Closed as not planned'
+                }
+              }
               let query = '?closed=1'
 
               title = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
