@@ -76,7 +76,7 @@ jobs:
             let done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'closed', 'completed', '')
             let notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'closed', 'not_planned', '')
             let wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'open', '', '')
-            // let todo = await getMilestoneAsMarkdown('none', 'open', '', 'triage')
+            let todo = await getMilestoneAsMarkdown('none', 'open', '', 'triage')
             
             return `Markdown for the infra team sync meeting notes preparation:
             <pre><code>
@@ -90,6 +90,7 @@ jobs:
             ${todo}
             
             </code></pre>
+            `
 
       - name: "Create release"
         id: create_release
