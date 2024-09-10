@@ -25,7 +25,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const getMilestoneAsMarkdown = async function(milestone, milestoneName, issuesState, closeReason, labels) {
+            const getMilestoneAsMarkdown = async function(milestone, issuesState, closeReason, labels) {
               const opts = github.rest.issues.listForRepo.endpoint.merge({
                 ...context.issue,
                 milestone,
@@ -73,20 +73,14 @@ jobs:
               return markdown
             }
 
-            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'completed', '')
-            notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'closed', 'not_planned', '')
-            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, context.payload.inputs.milestone_name, 'open', '', '')
+            done = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'closed', 'completed', '')
+            notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'closed', 'not_planned', '')
+            wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'open', '', '')
+            todo = await getMilestoneAsMarkdown('none', 'open', '', 'triage')
             
-            try {
-              todoMilestone = parseInt(context.payload.inputs.milestone_id) + 1
-              todo = await getMilestoneAsMarkdown('*', context.payload.inputs.milestone_name, 'open', '', 'triage')
-            } catch (error) {
-              console.error(error);
-              todo = ''
-            }
-
             return `Markdown for the infra team sync meeting notes preparation:
             <pre><code>
+            
             ${done}
 
             ${notPlanned}
@@ -96,22 +90,6 @@ jobs:
             ${todo}
             
             </code></pre>
-
-            <details><summary>Preview:</summary>
-
-            ${done}
-            
-            * New items:
-                * placeholder 1
-                * placeholder 2
-            
-            ${wip}
-
-            ${todo}
-
-            </details>
-
-            Generated from the ["${context.payload.inputs.milestone_name}"](${context.payload.repository.html_url}/milestone/${context.payload.inputs.milestone_id}) milestones.`
 
       - name: "Create release"
         id: create_release
