@@ -79,7 +79,7 @@ jobs:
             
             try {
               todoMilestone = parseInt(context.payload.inputs.milestone_id) + 1
-              todo = await getMilestoneAsMarkdown('', context.payload.inputs.milestone_name, 'open', '', 'triage')
+              todo = await getMilestoneAsMarkdown('*', context.payload.inputs.milestone_name, 'open', '', 'triage')
             } catch (error) {
               console.error(error);
               todo = ''
