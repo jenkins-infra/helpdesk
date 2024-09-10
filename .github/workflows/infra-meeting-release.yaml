@@ -37,11 +37,14 @@ jobs:
               const issues = await github.paginate(opts)
 
               let markdown = ''
-              let category = '' 
+              let category = ''
+              let query = ''
+              
               if (issuesState == 'open') {
                 category = 'Work in Progress'
               } else {
                 // issues states can only be 'closed' if not 'open'
+                query = '?closed=1'
                 if (closeReason == 'completed') {
                   category = 'Done'
                 } else {
@@ -49,7 +52,6 @@ jobs:
                   category = 'Closed as not planned'
                 }
               }
-              let query = '?closed=1'
 
               title = `* [${category}](${context.payload.repository.html_url}/milestone/${milestone}${query}):`
 
