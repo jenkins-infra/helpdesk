@@ -88,10 +88,11 @@ jobs:
 
             ${wip}
 
-            * Triage:
-              ${todo}
-              * Issues staying in backlog/triage:
-              * Issues added to the next [milestone](https://github.com/jenkins-infra/helpdesk/milestone/${nextMilestone}):
+            ${todo}
+            
+            * Issues staying in backlog/triage:
+            
+            * Issues added to the next [milestone](https://github.com/jenkins-infra/helpdesk/milestone/${nextMilestone}):
             
             </code></pre>
             `
