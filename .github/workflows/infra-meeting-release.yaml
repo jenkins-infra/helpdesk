@@ -43,7 +43,7 @@ jobs:
               
               if (issuesState == 'open') {
                 if (labels == 'triage') {
-                  category = 'New Issues (to triage)'
+                  category = 'Issues to triage (section to be deleted after triage):'
                 } else {
                   category = 'Work in Progress'
                 }
@@ -77,6 +77,7 @@ jobs:
             let notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'closed', 'not_planned', '')
             let wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'open', '', '')
             let todo = await getMilestoneAsMarkdown('none', 'open', '', 'triage')
+            let nextMilestone = context.payload.inputs.milestone_id + 1
             
             return `Markdown for the infra team sync meeting notes preparation:
             <pre><code>
@@ -87,7 +88,10 @@ jobs:
 
             ${wip}
 
-            ${todo}
+            * Triage:
+              ${todo}
+              * Issues staying in backlog/triage:
+              * Issues added to the next [milestone](https://github.com/jenkins-infra/helpdesk/milestone/${nextMilestone}):
             
             </code></pre>
             `
