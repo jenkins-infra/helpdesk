@@ -1,0 +1,55 @@
+name: '📲 Propose a new sponsored download mirror'
+labels: ['get.jenkins.io', 'mirrors.jenkins.io', 'mirror', 'sponsors', 'triage']
+description: Propose to host a new mirror for the Jenkins downloads (get.jenkins.io).
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing to host a new download mirror for the Jenkins project!
+        Before hitting the "Create" button, please answer the (required) questions below.
+
+        You can check the page <https://www.jenkins.io/download/mirrors/> if you need more details around the requirements for a mirror.
+  - type: textarea
+    attributes:
+      label: Mirror HTTPS public URL (details at <https://www.jenkins.io/download/mirrors/#an-http-server-to-serve-files-for-the-end-users>):
+    validations:
+      required: true
+    placeholder: |
+      https://<company.awesome>(/jenkins)
+  - type: textarea
+    attributes:
+      label: Mirror Provider Name (usually the organisation name):
+    validations:
+      required: true
+    placeholder: |
+      Awesome Company
+  - type: textarea
+    attributes:
+      label: Mirror Administrator's email (details at <https://www.jenkins.io/download/mirrors/#a-mirror-administrator-email-if-we-need-to-contact-you>):
+    validations:
+      required: true
+    placeholder: |
+      admin@company.awesome
+      (or)
+      <shared privately with the Jenkins Infra Team>
+  - type: textarea
+    attributes:
+      label: Mirror outbound IPs to allow on `rsync://archives.jenkins.io` (details at <https://www.jenkins.io/download/mirrors/#the-outbound-ips-used-by-your-rsync-client-routine>):
+    validations:
+      required: true
+    placeholder: |
+      1.2.3.4
+      2001:db8:3333:4444:5555:6666:7777:8888
+  - type: textarea
+    attributes:
+      label: Mirror Rsync URL for scanning files from Jenkins infrastructure (details at <https://www.jenkins.io/download/mirrors/#a-rsync-server-to-allow-regular-scans-of-your-mirror>):
+    validations:
+      required: true
+    placeholder: |
+      rsync://<company.awesome>(/jenkins)
+  - type: textarea
+    attributes:
+      label: Summary (any additional information, questions, etc.)
+    validations:
+      required: false
