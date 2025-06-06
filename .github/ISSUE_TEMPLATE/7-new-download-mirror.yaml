@@ -1,6 +1,6 @@
 name: '📲 Propose a new sponsored download mirror'
 labels: ['get.jenkins.io', 'mirrors.jenkins.io', 'mirror', 'sponsors', 'triage']
-description: Propose to host a new mirror for the Jenkins downloads (get.jenkins.io).
+description: Propose to host a new mirror for the Jenkins downloads (get.jenkins.io), for more information see [mirrors on jenkins.io](https://www.jenkins.io/download/mirrors).
 
 body:
   - type: markdown
@@ -12,21 +12,24 @@ body:
         You can check the page <https://www.jenkins.io/download/mirrors/> if you need more details around the requirements for a mirror.
   - type: textarea
     attributes:
-      label: Mirror HTTPS public URL (details at <https://www.jenkins.io/download/mirrors/#an-http-server-to-serve-files-for-the-end-users>):
+      label: Mirror HTTPS public URL
+      description: We recommend this has an IPv4 and IPv6 address
     validations:
       required: true
     placeholder: |
       https://<company.awesome>(/jenkins)
   - type: textarea
     attributes:
-      label: Mirror Provider Name (usually the organisation name):
+      label: Mirror Provider Name
+      description: Usually the organisation name
     validations:
       required: true
     placeholder: |
       Awesome Company
   - type: textarea
     attributes:
-      label: Mirror Administrator's email (details at <https://www.jenkins.io/download/mirrors/#a-mirror-administrator-email-if-we-need-to-contact-you>):
+      label: Mirror Administrator's email
+      description: We need to be able to contact you if there's issues, you can also share this privately via email to jenkins-infra-team@googlegroups.com
     validations:
       required: true
     placeholder: |
@@ -35,7 +38,7 @@ body:
       <shared privately with the Jenkins Infra Team>
   - type: textarea
     attributes:
-      label: Mirror outbound IPs to allow on `rsync://archives.jenkins.io` (details at <https://www.jenkins.io/download/mirrors/#the-outbound-ips-used-by-your-rsync-client-routine>):
+      label: Mirror outbound IPs
     validations:
       required: true
     placeholder: |
@@ -43,13 +46,14 @@ body:
       2001:db8:3333:4444:5555:6666:7777:8888
   - type: textarea
     attributes:
-      label: Mirror Rsync URL for scanning files from Jenkins infrastructure (details at <https://www.jenkins.io/download/mirrors/#a-rsync-server-to-allow-regular-scans-of-your-mirror>):
+      label: Mirror Rsync URL
     validations:
       required: true
     placeholder: |
       rsync://<company.awesome>(/jenkins)
   - type: textarea
     attributes:
-      label: Summary (any additional information, questions, etc.)
+      label: Additional information
+      description: Questions, or anything else
     validations:
       required: false
