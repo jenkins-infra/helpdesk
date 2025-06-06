@@ -10,47 +10,57 @@ body:
         Before hitting the "Create" button, please answer the (required) questions below.
 
         You can check the page <https://www.jenkins.io/download/mirrors/> if you need more details around the requirements for a mirror.
-  - type: textarea
+  - type: input
+    id: mirror_http_url
     attributes:
-      label: Mirror HTTPS public URL
-      description: We recommend this has an IPv4 and IPv6 address
+      label: Mirror HTTPS URL
+      description: |
+        Public HTTPS URL (details at <https://www.jenkins.io/download/mirrors/#an-http-server-to-serve-files-for-the-end-users>)
+      placeholder: |
+        https://<company.awesome>(/jenkins)
     validations:
       required: true
-    placeholder: |
-      https://<company.awesome>(/jenkins)
-  - type: textarea
+  - type: input
+    id: mirror_name
     attributes:
-      label: Mirror Provider Name
+      label: Mirror Provider Name 
       description: Usually the organisation name
+      placeholder: |
+        Awesome Company
     validations:
       required: true
-    placeholder: |
-      Awesome Company
-  - type: textarea
+  - type: input
+    id: mirror_admin_email
     attributes:
-      label: Mirror Administrator's email
-      description: We need to be able to contact you if there's issues, you can also share this privately via email to jenkins-infra-team@googlegroups.com
+      label: Mirror Administrator Email
+      description: |
+        We need to be able to contact you if there's issues, you can also share this privately via email to jenkins-infra-team@googlegroups.com 
+        (details at <https://www.jenkins.io/download/mirrors/#a-mirror-administrator-email-if-we-need-to-contact-you>)
+      placeholder: |
+        admin@company.awesome (or) <shared privately with the Jenkins Infra Team>
     validations:
       required: true
-    placeholder: |
-      admin@company.awesome
-      (or)
-      <shared privately with the Jenkins Infra Team>
   - type: textarea
+    id: mirror_outbound_ips
     attributes:
-      label: Mirror outbound IPs
+      label: Mirror Outbound IPs
+      description: |
+        Set of outbound IPs (Ipv4/IPv6) to allow on `rsync://archives.jenkins.io` (details at <https://www.jenkins.io/download/mirrors/#the-outbound-ips-used-by-your-rsync-client-routine>)
+      placeholder: |
+        1.2.3.4
+        2001:db8:3333:4444:5555:6666:7777:8888
     validations:
       required: true
-    placeholder: |
-      1.2.3.4
-      2001:db8:3333:4444:5555:6666:7777:8888
-  - type: textarea
+  - type: input
+    id: mirror_rsync_url
     attributes:
       label: Mirror Rsync URL
+      description: |
+        Rsync URL for scanning files from Jenkins infrastructure (details at <https://www.jenkins.io/download/mirrors/#a-rsync-server-to-allow-regular-scans-of-your-mirror>)
+      placeholder: |
+        rsync://<company.awesome>(/jenkins)
     validations:
       required: true
-    placeholder: |
-      rsync://<company.awesome>(/jenkins)
   - type: textarea
     attributes:
       label: Additional information
