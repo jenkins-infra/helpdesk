@@ -1,0 +1,68 @@
+name: '📲 Propose a new sponsored download mirror'
+labels: ['get.jenkins.io', 'mirrors.jenkins.io', 'mirror', 'sponsors', 'triage']
+description: Propose to host a new mirror for the Jenkins downloads (get.jenkins.io), for more information see [mirrors on jenkins.io](https://www.jenkins.io/download/mirrors).
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing to host a new download mirror for the Jenkins project!
+        Before hitting the "Create" button, please answer the (required) questions below.
+
+        You can check the page <https://www.jenkins.io/download/mirrors/> if you need more details around the requirements.
+  - type: input
+    id: mirror_http_url
+    attributes:
+      label: Mirror HTTPS URL
+      placeholder: |
+        https://<company.awesome>(/jenkins)
+    validations:
+      required: true
+  - type: input
+    id: mirror_name
+    attributes:
+      label: Mirror Provider Name 
+      description: Usually the organisation name
+      placeholder: |
+        Awesome Company
+    validations:
+      required: true
+  - type: input
+    id: mirror_admin_email
+    attributes:
+      label: Mirror Administrator Email
+      placeholder: |
+        admin@company.awesome (or) <shared privately with the Jenkins Infra Team>
+    validations:
+      required: true
+  - type: textarea
+    id: mirror_outbound_ips
+    attributes:
+      label: Mirror Outbound IPs
+      # NOTE: Keep 'description' up to date with <https://www.jenkins.io/download/mirrors/> page content
+      description: |
+        Your outbound IPs (Ipv4/IPv6) to allow on `rsync://archives.jenkins.io` for scanning.
+      placeholder: |
+        1.2.3.4
+        2001:db8:3333:4444:5555:6666:7777:8888
+    validations:
+      required: true
+  - type: input
+    id: mirror_rsync_url
+    attributes:
+      label: Mirror Rsync URL
+      # NOTE: Keep 'description' up to date with <https://www.jenkins.io/download/mirrors/> page content
+      description: |
+        The rsync URL of your server for scanning files from Jenkins infrastructure:
+        - You can restrict inbound requests to the Jenkins infrastructure IPs specified at <https://reports.jenkins.io/infrastructure/v2/index.json> (JSON query path: `get.jenkins.io".outbound_ips[]`).
+        - Our scanning IPs do not change often (once a year usually) but we update the JSON daily in case of any change.
+      placeholder: |
+        rsync://<company.awesome>(/jenkins)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Questions, or anything else
+    validations:
+      required: false
