@@ -50,6 +50,7 @@ body:
         - "Helpdesk"
         - "Incrementals"
         - "IRC"
+        - "issue-redirect.jenkins.io"
         - "jenkins.io"
         - "Jira"
         - "LDAP"
