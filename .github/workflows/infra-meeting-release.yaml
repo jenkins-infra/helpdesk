@@ -77,7 +77,7 @@ jobs:
             let notPlanned = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'closed', 'not_planned', '')
             let wip = await getMilestoneAsMarkdown(context.payload.inputs.milestone_id, 'open', '', '')
             let todo = await getMilestoneAsMarkdown('none', 'open', '', 'triage')
-            let nextMilestone = context.payload.inputs.milestone_id + 1
+            let nextMilestone = Number(context.payload.inputs.milestone_id) + 1
             
             return `Markdown for the infra team sync meeting notes preparation:
             <pre><code>
