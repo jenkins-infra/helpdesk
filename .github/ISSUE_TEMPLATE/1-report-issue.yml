@@ -52,6 +52,7 @@ body:
         - "IRC"
         - "issue-redirect.jenkins.io"
         - "jenkins.io"
+        - "javadoc.jenkins.io"
         - "Jira"
         - "LDAP"
         - "Mailing lists"
