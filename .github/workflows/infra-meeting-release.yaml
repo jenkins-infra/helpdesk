@@ -71,7 +71,7 @@ jobs:
                         (issuesState === 'closed' && issue.state_reason === closeReason)
                       ) {
                         // Extract category label (optional, only one expected)
-                        const categoryLabel = issue.labels?.find(l.name.startsWith('category:'))
+                        const categoryLabel = issue.labels?.find(l => l.name.startsWith('category:'))
 
                         const category = categoryLabel ? categoryLabel.name.replace('category:', '') : 'uncategorized'
 
