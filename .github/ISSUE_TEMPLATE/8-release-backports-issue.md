@@ -12,6 +12,7 @@ Release date: <!-- put here the release date -->
 Backports to prepare by the infra team:
 - [ ] https://github.com/jenkins-infra/release:
 - [ ] https://github.com/jenkinsci/packaging:
+- [ ] https://github.com/jenkinsci/docker:
 
 Previously: <!-- put here the previous backports helpdesk issue link -->
 
