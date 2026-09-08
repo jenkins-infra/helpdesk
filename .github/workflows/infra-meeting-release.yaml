@@ -82,9 +82,9 @@ jobs:
                 }
 
                 for (const [categoryName, categoryIssues] of issuesByCategory.entries()) {
-                  markdown += `\r\n\r\n  * ${categoryName}`
+                  markdown += `\r\n\r\n    * ${categoryName}`
                   for (const issue of categoryIssues) {
-                    markdown += `\r\n    * [${issue.title}](${issue.html_url})`
+                    markdown += `\r\n        * [${issue.title}](${issue.html_url})`
                   }
                 }
               }
