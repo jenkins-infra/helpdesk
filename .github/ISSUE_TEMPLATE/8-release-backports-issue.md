@@ -1,12 +1,11 @@
 ---
 name: 📦 Release backports preparation
-about: Prepare backports for an upcoming release
-title: 'Prepare release, packaging and docker backports for incoming LTS'
+about: Request the preparation of backports for an upcoming release
+title: 'Prepare release, packaging and docker backports for LTS [put release version here]'
 labels: 'release'
 assignees: ''
 ---
 
-LTS release version: <!-- put here the LTS release version -->
 Release date: <!-- put here the release date -->
 
 Backports to prepare by the infra team:
